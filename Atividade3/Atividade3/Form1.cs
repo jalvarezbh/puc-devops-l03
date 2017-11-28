@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Atividade3
@@ -9,6 +11,7 @@ namespace Atividade3
     {
         public Form1()
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("pt-BR");
             InitializeComponent();
         }
 
@@ -25,14 +28,14 @@ namespace Atividade3
 
                 int valorInteiro = Convert.ToInt32(valorDecimal);
 
-                if (valorInteiro <= 0)
+                if (valorInteiro <= 0 || valorDecimal != valorInteiro || valorInteiro > 999)
                     throw new Exception();
 
                 return ($"{numero} - {ConvertTextual(valorInteiro.ToString())}");
             }
             catch (Exception)
             {
-                return ($"{numero} - Valor inválido");
+                return ("Valor inválido");
             }
         }
 
