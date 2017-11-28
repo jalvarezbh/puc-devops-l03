@@ -47,6 +47,7 @@ namespace Atividade3
                 {
                     case 3:
                         retorno.Append(VerificaCentena(Convert.ToInt16(numero.Substring(quadroValor, 1))));
+                        retorno.Append(" e ");
                         break;
                     case 2:
                         var dezena = VerificaDezena(Convert.ToInt16(numero.Substring(quadroValor, 1)));
@@ -56,24 +57,27 @@ namespace Atividade3
                             quadroValor = tamanho - 1;
                         }
                         else
+                        {
                             retorno.Append(dezena.descricao);
+                            retorno.Append(" e ");
+                        }
                         break;
                     case 1:
-                        retorno.Append(VerificaUnidade(Convert.ToInt16(numero.Substring(quadroValor, 1))));
+                        retorno.Append(VerificaUnidade(Convert.ToInt16(numero.Substring(quadroValor, 1))));                        
                         break;
                     default:
                         retorno.Append("Valor Inválido");
                         break;
                 }
 
-                retorno.Append(" ");
+                
                 quadroValor++;
             }
 
             if (numero.Equals("1"))
-                retorno.Append("real");
+                retorno.Append(" real");
             else
-                retorno.Append("reais");
+                retorno.Append(" reais");
 
             var resultado = retorno.ToString();
             resultado = resultado.First().ToString().ToUpper() + resultado.Substring(1);

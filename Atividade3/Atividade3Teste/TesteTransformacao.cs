@@ -27,7 +27,7 @@ namespace Atividade3Teste
         [TestMethod]
         public void TesteQuarendaEDois()
         {
-            Assert.AreEqual(_Conversor.ProcessarNumero("42"),"42 - Quarenta e dois reais.");
+            Assert.AreEqual(_Conversor.ProcessarNumero("42"),"42 - Quarenta e dois reais");
         }
     }
 }
