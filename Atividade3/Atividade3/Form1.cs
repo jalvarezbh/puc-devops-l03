@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Atividade3
@@ -19,22 +14,26 @@ namespace Atividade3
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
+                lstValoresTexto.Items.Add(ProcessarNumero(txtValor.Text));
+        }
+
+        public string ProcessarNumero(string numero)
+        {
             try
             {
-                decimal valorDecimal = Convert.ToDecimal(txtValor.Text);
+                decimal valorDecimal = Convert.ToDecimal(numero);
 
                 int valorInteiro = Convert.ToInt32(valorDecimal);
 
                 if (valorInteiro <= 0)
                     throw new Exception();
 
-                lstValoresTexto.Items.Add($"{txtValor.Text} - {ConvertTextual(valorInteiro.ToString())}");
+                return ($"{numero} - {ConvertTextual(valorInteiro.ToString())}");
             }
             catch (Exception)
             {
-                lstValoresTexto.Items.Add($"{txtValor.Text} - Valor inválido");
+                return ($"{numero} - Valor inválido");
             }
-            
         }
 
         private string ConvertTextual(string numero)
