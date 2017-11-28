@@ -50,7 +50,14 @@ namespace Atividade3
                         retorno.Append(VerificaCentena(Convert.ToInt16(numero.Substring(quadroValor, 1))));
                         break;
                     case 2:
-                        retorno.Append(VerificaDezena(Convert.ToInt16(numero.Substring(quadroValor, 1))));
+                        var dezena = VerificaDezena(Convert.ToInt16(numero.Substring(quadroValor, 1)));
+                        if (dezena.dez)
+                        {
+                            retorno.Append(VerificaUnidadeDecimal(Convert.ToInt16(numero.Substring(quadroValor + 1, 1))));
+                            quadroValor = tamanho - 1;
+                        }
+                        else
+                            retorno.Append(dezena.descricao);
                         break;
                     case 1:
                         retorno.Append(VerificaUnidade(Convert.ToInt16(numero.Substring(quadroValor, 1))));
@@ -102,30 +109,59 @@ namespace Atividade3
             }
         }
 
-        private string VerificaDezena(short dezena)
+        private string VerificaUnidadeDecimal(short unidade)
+        {
+            switch (unidade)
+            {
+                case 0:
+                    return "dez";
+                case 1:
+                    return "onze";
+                case 2:
+                    return "doze";
+                case 3:
+                    return "treze";
+                case 4:
+                    return "quatorze";
+                case 5:
+                    return "quinze";
+                case 6:
+                    return "dezesseis";
+                case 7:
+                    return "dezessete";
+                case 8:
+                    return "dezoito";
+                case 9:
+                    return "dezenove";
+                default:
+                    return string.Empty;
+            }
+        }
+
+        private (string descricao, bool dez) VerificaDezena(short dezena)
         {
             switch (dezena)
             {
                 case 1:
-                    return "dez";
+                    return ("",true);
                 case 2:
-                    return "vinte";
+                    return ("vinte", false);
                 case 3:
-                    return "trinta";
+                    return ("trinta", false);
                 case 4:
-                    return "quarenta";
+                    return ("quarenta", false);
                 case 5:
-                    return "cinquenta";
+                    return ("cinquenta", false);
                 case 6:
-                    return "sessenta";
+                    return ("sessenta", false);
                 case 7:
-                    return "setenta";
+                    return ("setenta", false);
                 case 8:
-                    return "oitenta";
+                    return ("oitenta", false);
                 case 9:
-                    return "noventa";
+                    return ("noventa", false);
                 default:
-                    return string.Empty;
+                    return (string.Empty,false);
             }
 
         }
